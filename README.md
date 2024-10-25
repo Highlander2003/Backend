@@ -78,11 +78,7 @@ Una vez que la aplicación esté en funcionamiento, puedes acceder a las siguien
 
 Las contribuciones son bienvenidas. Por favor, abre un issue o un pull request para discutir cualquier cambio.
 
-### Licencia
-
-Este proyecto está licenciado bajo los términos de la licencia MIT.
-Esta aplicación es una API REST construida con Flask para manejar operaciones CRUD sobre sitios turísticos.
-
+                                                                 
 ## Requisitos
 
 - Python 3.x

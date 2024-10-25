@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__, static_folder='frontend')
 
 # Configuración de la base de datos
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sitios.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://TwoWheelers_seasonwhen:4733bb22058b2604a82529411a7a4e8482a71916@319gf.h.filess.io:3307/TwoWheelers_seasonwhen'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
