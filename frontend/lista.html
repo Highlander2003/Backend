@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Sitios Turísticos</title>
+    <script>
+        async function actualizarSitio(id) {
+            const nombre = document.getElementById(`nombre-${id}`).value;
+            const ubicacion = document.getElementById(`ubicacion-${id}`).value;
+            const descripcion = document.getElementById(`descripcion-${id}`).value;
+            const horario = document.getElementById(`horario-${id}`).value;
+            const costo = document.getElementById(`costo-${id}`).value;
+            const categoria = document.getElementById(`categoria-${id}`).value;
+
+            const response = await fetch(`/sitios/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    nombre,
+                    ubicacion,
+                    descripcion,
+                    horario,
+                    costo,
+                    categoria
+                })
+            });
+
+            const data = await response.json();
+            alert(data.mensaje);
+        }
+
+        async function eliminarSitio(id) {
+            const response = await fetch(`/sitios/${id}`, {
+                method: 'DELETE'
+            });
+
+            const data = await response.json();
+            alert(data.mensaje);
+            document.getElementById(`sitio-${id}`).remove();
+        }
+
+        async function cargarSitios() {
+            const response = await fetch('/sitios');
+            const sitios = await response.json();
+
+            const contenedor = document.getElementById('sitios-container');
+            sitios.forEach(sitio => {
+                const sitioDiv = document.createElement('div');
+                sitioDiv.id = `sitio-${sitio.id}`;
+                sitioDiv.innerHTML = `
+                    <h3>${sitio.nombre}</h3>
+                    <p>Nombre: <input type="text" id="nombre-${sitio.id}" value="${sitio.nombre}"></p>
+                    <p>Ubicación: <input type="text" id="ubicacion-${sitio.id}" value="${sitio.ubicacion}"></p>
+                    <p>Descripción: <input type="text" id="descripcion-${sitio.id}" value="${sitio.descripcion}"></p>
+                    <p>Horario: <input type="text" id="horario-${sitio.id}" value="${sitio.horario}"></p>
+                    <p>Costo: <input type="text" id="costo-${sitio.id}" value="${sitio.costo}"></p>
+                    <p>Categoría: <input type="text" id="categoria-${sitio.id}" value="${sitio.categoria}"></p>
+                    <button onclick="actualizarSitio(${sitio.id})">Actualizar</button>
+                    <button onclick="eliminarSitio(${sitio.id})">Eliminar</button>
+                `;
+                contenedor.appendChild(sitioDiv);
+            });
+        }
+
+        window.onload = cargarSitios;
+    </script>
+</head>
+<body>
+    <h1>Lista de Sitios Turísticos</h1>
+    <div id="sitios-container"></div>
+    <button onclick="window.location.href='index.html'">Volver a Crear Sitios</button>
+</body>
+</html>

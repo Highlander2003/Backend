@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitios Turísticos</title>
+</head>
+<body>
+    <h1>Sitios Turísticos</h1>
+    <form id="sitioForm">
+        <input type="text" id="nombre" placeholder="Nombre" required>
+        <input type="text" id="ubicacion" placeholder="Ubicación" required>
+        <input type="text" id="descripcion" placeholder="Descripción">
+        <input type="text" id="horario" placeholder="Horario" required>
+        <input type="number" id="costo" placeholder="Costo" required>
+        <input type="text" id="categoria" placeholder="Categoría" required>
+        <button type="submit">Crear Sitio</button>
+    </form>
+    <button onclick="window.location.href='lista.html'">Ver Lista de Sitios</button>
+    <script src="app.js"></script>
+</body>
+</html>
